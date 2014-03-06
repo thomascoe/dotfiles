@@ -13,7 +13,7 @@ fi;
 if [ -f ~/.gitconfig ]; then
 	mv ~/.gitconfig ~/.gitconfig.old
 fi;
-if [-f ~/.NERDTreeBookmarks ]; then
+if [ -f ~/.NERDTreeBookmarks ]; then
 	mv ~/.NERDTreeBookmarks ~/..NERDTreeBookmarks.old
 fi;
 
