@@ -113,3 +113,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Startup info
+clear
+echo -ne "Today is "; date
+echo -ne "Uptime:";uptime | awk /'up/ {print $3,$4}'
