@@ -13,6 +13,9 @@ fi;
 if [ -f ~/.gitconfig ]; then
 	mv ~/.gitconfig ~/.gitconfig.old
 fi;
+if [ -f ~/.conkyrc ]; then
+	mv ~/.conkyrc ~/.conkyrc.old
+fi;
 if [ -f ~/.NERDTreeBookmarks ]; then
 	mv ~/.NERDTreeBookmarks ~/..NERDTreeBookmarks.old
 fi;
@@ -21,4 +24,5 @@ fi;
 ln -f .bashrc ~/
 ln -f .bash_aliases ~/
 ln -f .gitconfig ~/
+ln -f .conkyrc ~/
 ln -f .NERDTreeBookmarks ~/
