@@ -26,7 +26,7 @@ default_shade_color black
 default_outline_color white
 alignment br
 gap_x 20
-gap_y 130
+gap_y 160
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -38,6 +38,8 @@ ${font Ubuntu:normal:size=8}${pre_exec lsb_release -d -s} $alignr $sysname $kern
 Host:$alignr$nodename
 Uptime:$alignr$uptime
 File System: $alignr${fs_type}
+Battery Status: $alignr${battery_time}, ${battery_short}
+${battery_bar}
 
 ${font Ubuntu:bold:size=8}PROCESSORS ${hr 2}
 ${font Ubuntu:normal:size=8}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //' | tail -n 1}
@@ -48,18 +50,18 @@ CPU 3: ${cpu cpu2}% ${cpubar cpu2}
 CPU 4: ${cpu cpu3}% ${cpubar cpu3}
 
 ${font Ubuntu:bold:size=8}MEMORY ${hr 2}
-
 ${font Ubuntu:normal:size=8}RAM $alignc $mem / $memmax $alignr $memperc%
 $membar
 
 ${font Ubuntu:bold:size=8}DISKS ${hr 2}
-${font Ubuntu:normal:size=8}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /}%
+${font Ubuntu:normal:size=8}/dev/sda $alignc Samsung SSD 840 EVO 120GB
+/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /}%
 ${fs_bar /}
 HOME $alignc ${fs_used /home} / ${fs_size /home} $alignr ${fs_used_perc /home}%
 ${fs_bar /home}
-WINDOWS $alignc ${fs_used /media/thomas/1FEC028818DDBB89} / ${fs_size /media/thomas/1FEC028818DDBB89} $alignr ${fs_used_perc /media/thomas/1FEC028818DDBB89}%
+${if_mounted /media/thomas/1FEC028818DDBB89}WINDOWS $alignc ${fs_used /media/thomas/1FEC028818DDBB89} / ${fs_size /media/thomas/1FEC028818DDBB89} $alignr ${fs_used_perc /media/thomas/1FEC028818DDBB89}%
 ${fs_bar /media/thomas/1FEC028818DDBB89}
-
+${endif}
 ${font Ubuntu:bold:size=8}TOP PROCESSES ${hr 2}
 ${font Ubuntu:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
 ${top_mem name 2}${alignr}${top mem 2} %
@@ -67,10 +69,12 @@ $font${top_mem name 3}${alignr}${top mem 3} %
 $font${top_mem name 4}${alignr}${top mem 4} %
 $font${top_mem name 5}${alignr}${top mem 5} %
 
-${font Ubuntu:bold:size=8}NETWORK ${hr 2}
+${font Ubuntu:bold:size=8}WIFI NETWORK ${hr 2}
 ${font Ubuntu:normal:size=8}SSID: $alignr ${wireless_essid wlan0}
 IP address: $alignr ${addr wlan0}
-${downspeedgraph wlan0}
+Wireless Bitrate: $alignr ${wireless_bitrate wlan0}
+AP Mode: $alignr ${wireless_mode wlan0}
+Signal Strength: $alignr ${wireless_link_qual_perc wlan0}%
+${wireless_link_bar wlan0}
 DLS:${downspeed wlan0} kb/s $alignr total: ${totaldown wlan0}
-${upspeedgraph wlan0}
 ULS:${upspeed wlan0} kb/s $alignr total: ${totalup wlan0}
