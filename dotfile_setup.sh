@@ -16,8 +16,11 @@ fi;
 if [ -f ~/.conkyrc ]; then
 	mv ~/.conkyrc ~/.conkyrc.old
 fi;
-if [ -f ~/.NERDTreeBookmarks ]; then
-	mv ~/.NERDTreeBookmarks ~/..NERDTreeBookmarks.old
+if [ -f ~/.tmux.conf ]; then
+	mv ~/.tmux.conf ~/.tmux.conf.old
+fi;
+if [ -f ~/.xprofile ]; then
+	mv ~/.xprofile ~/.xprofile.old
 fi;
 
 # Create links
@@ -25,4 +28,5 @@ ln -f .bashrc ~/
 ln -f .bash_aliases ~/
 ln -f .gitconfig ~/
 ln -f .conkyrc ~/
-ln -f .NERDTreeBookmarks ~/
+ln -f .tmux.conf ~/
+ln -f .xprofile ~/
